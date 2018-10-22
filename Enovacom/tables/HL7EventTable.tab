@@ -1,0 +1,52 @@
+code;value
+A01;Admit/visit notification
+A02;Transfer a patient
+A03;Discharge/end visit
+A04;Register a patient
+A05;Pre-admit a patient
+A06;Change an outpatient to an inpatient
+A07;Change an inpatient to an outpatient
+A08;Update patient information
+A09;Patient departing - tracking
+A10;Patient arriving - tracking
+A11;Cancel admit/visit notification
+A12;Cancel transfer
+A13;Cancel discharge/end visit
+A14;Pending admit
+A15;Pending transfer
+A16;Pending discharge
+A17;Swap patients
+A18;Merge patient information
+A19;QRY/ADR - Patient query
+A20;Bed status update
+A21;Patient goes on a leave of absence
+A22;Patient returns from a leave of absence
+A23;Delete a patient record
+A24;Link patient information
+A25;Cancel pending discharge
+A26;Cancel pending transfer
+A27;Cancel pending admit
+A28;Add person information
+A29;Delete person information
+A30;Merge person information
+A31;Update person information
+A32;Cancel patient arriving - tracking
+A33;Cancel patient departing - tracking
+A34;Merge patient information - patient I
+A35;Merge patient information - account only
+A36;Merge patient information - patient ID and account number
+A37;Unlink patient information
+A38;Cancel pre-admit
+A39;Merge person - patient ID
+A40;Merge patient - patient identifier list
+A41;Merge account - patient account num
+A42;Merge visit - visit number
+A43;Move patient information - patient identifier list
+A44;Move account information - patient account number
+A45;Move visit information - visit number
+A46;Change patient ID
+A47;Change patient identifier list
+A48;Change alternate patient ID
+A49;Change patient account number
+A50;Change visit number
+A51;Change alternate visit ID

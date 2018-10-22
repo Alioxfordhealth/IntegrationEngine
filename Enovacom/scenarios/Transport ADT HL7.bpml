@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package targetNamespace="Transport ADT HL7" version="2.40.1.0" xmlns="http://www.bpmi.org/2002/BPML/process">
+<process id="d4f2e153" name="Transport ADT HL7">
+<context/>
+<action comment="false" id="c8a1614a" name="Transport ADT HL7" nomAffiche="Transport HL7 2.5">
+<documentation>Sends content to outbound service</documentation>
+<input formatter="HL7 CRLF UTF" property="InputMessage"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<action comment="false" id="ad46984" name="actionActivity" nomAffiche="Enqueue file ">
+<documentation/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">depotFichier</extension>
+<extension name="append">false</extension>
+<extension name="conf1"/>
+<extension name="conf2b"/>
+<extension name="conf3"/>
+<extension name="conf2a"/>
+<extension name="commandsAfterCopy"/>
+<extension name="isUniqueName">false</extension>
+<extension name="errorWorkflow"/>
+<extension name="serviceOutKey">Directory Writing ADT HL7</extension>
+<extension name="path">c:\enovacom\eai\Reception</extension>
+<extension name="fileName">$InputIddocument;</extension>
+<extension name="successWorkflow"/>
+<extension name="waitIfPresent">false</extension>
+<extension name="commandsBeforeCopy"/>
+</attributes>
+</action>
+<attributes xmlns="">
+<extension name="activityName">eventAction</extension>
+<extension name="maxNumberOfThreads">1</extension>
+</attributes>
+</action>
+</process>
+</package>

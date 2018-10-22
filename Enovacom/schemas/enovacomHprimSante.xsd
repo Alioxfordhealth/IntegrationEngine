@@ -1,0 +1,1822 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="HPRIM">
+		<xs:annotation>
+			<xs:documentation>Racine schema Hprim Sante 2.1 et 2.2 Antares V2 tous contextes</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="H"/>
+				<xs:element ref="P" maxOccurs="unbounded"/>
+				<xs:element ref="L"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="H">
+		<xs:annotation>
+			<xs:documentation>Segment H : En-tête du message</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="H.2.1">
+					<xs:annotation>
+						<xs:documentation>Définition des séparateurs</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="H.3.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identification du message (nom du fichier)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.4.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Mot de passe</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.5.1">
+					<xs:annotation>
+						<xs:documentation>Codification de l'emetteur</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="H.5.2">
+					<xs:annotation>
+						<xs:documentation>Nom de l'emetteur</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="H.6.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ligne 1 adresse de l'emetteur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.6.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ligne 2 adresse de l'emetteur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.6.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ville de l'emetteur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.6.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Libellé département de l'emetteur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.6.5" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Code postal de l'emetteur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.6.6" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Pays de l'emetteur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.7.1">
+					<xs:annotation>
+						<xs:documentation>Type de message : ORU</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="H.8.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Numéro de téléphone, répétiteur autorisé</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.9.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Caractéristique de la transmission</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.10.1">
+					<xs:annotation>
+						<xs:documentation>Codification du récepteur</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="H.10.2">
+					<xs:annotation>
+						<xs:documentation>Nom du récepteur</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="H.11.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Commentaire</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.12.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Mode de traitement : P (production), T (test) ou D (debug)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.13.1">
+					<xs:annotation>
+						<xs:documentation>Version de la norme (H2.1 ou H2.2)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="H.13.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Type de liaison : L (liaison entre laboratoires), C (liaison  entre laboratoires et etablissements, R (liaison entre radiologie et etablissement)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="H.14.1">
+					<xs:annotation>
+						<xs:documentation>Date et heure de constitution du message</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="H.15.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Rajout pour compatibilité</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="C" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="P">
+		<xs:annotation>
+			<xs:documentation>Segment P : Patient</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="P.2.1">
+					<xs:annotation>
+						<xs:documentation>Rang du segment</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="P.3.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identifiant du patient attribué par le demandeur (IPP généralement)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.3.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identifiant d'un patient à fusionner</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.3.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Indicateur "FU" indiquant une demande de fusion de patient</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.4.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identifiant du patient attribué par l'executant</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.4.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Compatibilité ERA</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.5.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Numéro de dossier administratif clinique</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.5.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Rang de naissance à renseigner si le patient est un  nouveau né</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.6.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nom de famille du patient</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.6.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Prénom du patient</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.6.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Deuxième prénom du patient</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.6.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Sobriquet ou alias</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.6.5" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Civilité</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.6.6" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Diplôme</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.7.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nom de jeune fille</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.8.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date de naissance du patient</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.9.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Sexe (F, M ou U)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.10.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Race : INTERDIT</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.11.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ligne 1 de l'adresse</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.11.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ligne 2 de l'adresse</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.11.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ville</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.11.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Libelllé département</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.11.5" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Code postal</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.11.6" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Pays</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.12.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Non utilisé</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.12.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Inutilisé</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.13.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Téléphone</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="P.14.1" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Code médecin, généralement l'ADELI</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="P.14.2" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Nom, prénom, etc médecin</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="P.14.3" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Type de code médecin</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="P.14.4" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Adresse médecin (optionnel)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="P.15.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Traitement local 1</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.16.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Traitement local 2</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.17.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Taille du patient, par défaut en centimètre</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.18.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Poids du patient, par défaut en kg</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.19.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Diagnostic connu ou suspecté relatif au patient</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.20.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Traitement : Nom des médicaments pris ou suspectés d'avoir été pris, separé par des répétiteurs</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.21.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Régime</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.22.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Commentaire 1 patient du demandeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.23.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Commentaire 2 patient du demandeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.24.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Date et heure d'admission ou de mouvement, éventuellement suivie de la date de sortie séparée par un répétiteur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.25.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Statut de l'admission
+OP : Sortie
+IP : Entrée
+IO : Entrée sortie (externe ou ambulatoire)
+ER : Entrée urgence
+MP : Mouvement interne ou modification
+PA : Pré-admission</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.26.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Lit</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.26.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Chambre</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.26.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Code UF</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.26.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Libre, à définir localement si nécessaire</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.26.5" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Libre, à définir localement si nécessaire</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.26.6" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Libre, à définir localement si nécessaire</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.26.7" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Libre, à définir localement si nécessaire</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.26.8" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Libre, à définir localement si nécessaire</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.27.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Classification du diagnostic</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.28.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Religion : INTERDIT</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.29.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Situation maritale : 
+M : Marié
+S : Célibataire
+D : Divorcé
+W : Veuf
+A : Séparé
+U : Inconnu</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.30.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Précautions à prendre</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.31.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Langue</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.32.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Statut de confidentialité</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.33.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date de derniere modification des données patient </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.34.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date de décès</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="P.35.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Pour compatibilité ERA (vide)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="C" minOccurs="0"/>
+				<xs:element ref="OBR" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="AP" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="FAC" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="REG" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="L">
+		<xs:annotation>
+			<xs:documentation>Segment L : Fin de message</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="L.2.1">
+					<xs:annotation>
+						<xs:documentation>Rang du segment</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="L.3.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Non utilisé</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="L.4.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nombre de segment P</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="L.5.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nombre de segment du message</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="L.6.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Numéro de lot</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="C" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OBR">
+		<xs:annotation>
+			<xs:documentation>Segment OBR : Demande d'analyses ou d'actes</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OBR.2.1">
+					<xs:annotation>
+						<xs:documentation>Rang du segment</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="OBR.3.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identifiiant de l'échantillon pour le demandeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.3.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identifiant de la demande pour le demandeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.4.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identifiant de l'échantillon pour l'executant</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.4.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identifiant de la demande pour l'executant</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:sequence maxOccurs="unbounded">
+					<xs:element name="OBR.5.1">
+						<xs:annotation>
+							<xs:documentation>Demande d'analyse ou d'acte : code 1</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="OBR.5.2" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Demande d'analyse ou d'acte : libelle 1</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.5.3" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Demande d'analyse ou d'acte : codification utilisee 1</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.5.4" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Demande d'analyse ou d'acte : code 2</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.5.5" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Demande d'analyse ou d'acte : libelle 2</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.5.6" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Demande d'analyse ou d'acte : codification utilisee 2</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="OBR.6.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Priorité :
+S : Trés Urgent
+A : Urgent
+R : Routine
+C : Rappel
+P : Pré-opératoire</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.7.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Date et heure de prise en compte (normalement 1 seule occurence)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.8.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Date et heure des actes (prélevement) - répétable pour compatibilité</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.8.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Pour compatibilité</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.9.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date et heure de fin de prélevement</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.10.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Volume du recueil</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.11.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Préleveur : Code</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.11.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Préleveur : Nom</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.11.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Préleveur : Type de code</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.12.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Code action : définit le traitement à effectuer pour les analyses de l'échantillon. Champ obligatoire dans le contexte ORA ou ORM. Sinon, il est optionnel</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.13.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Risques relatifs à l'echantillon</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.14.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Renseignements cliniques</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.15.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date et heure de reception de l'échantillon chez l'executant</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.16.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Type de l'échantillon</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.16.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Additif</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.16.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Méthode de prélèvement</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Prescripteur</xs:documentation>
+					</xs:annotation>
+					<xs:element name="OBR.17.1" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Code Prescripteur (ADELI si possible)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.17.2" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Nom, prénom etc</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.17.3" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Type de code : L (local) ou A; utilisé A dans le contexte ORA et si nécessaire pour les liaisons cliniques</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.17.4" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>UD Destinatrice dans l'établissement de soins</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.17.5" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Nom du service ou de l'UF destinataire</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.17.6" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Type de code</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.17.7" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Adresse du médecin</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="OBR.18.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Téléphone du prescripteur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.19.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Champ libre 1 demandeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.20.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Champ libre 2 demandeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.21.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Champ libre 1 executant</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.22.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Champ libre 2 executant</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.23.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date et heure des résultats</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.24.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Prix des actes : RESERVE </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.25.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Code service ou UF executant</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.25.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nom service ou UF executant</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.26.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Statut des actes ou résultats</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.27.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Résultats liés (RESERVE)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.28.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Cycle et épreuve fonctionnelle (RESERVE)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Destinataire de la copie</xs:documentation>
+					</xs:annotation>
+					<xs:element name="OBR.29.1" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Destinataire de la copie : code</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.29.2" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Destinataire de la copie : nom</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.29.3" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Destinataire de la copie : type de code</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="OBR.30.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Demande liée : identification de la demande mère (pour le demandeur)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.30.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Demande liée : identification de la demande mère (pour l'exécutant)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.30.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Demande liée : identification de la demande fille (pour le demandeur)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.30.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Demande liée : identification de la demande fille (pour l'exécutant)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.31.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Mode de transport du patient</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.32.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Motif de la demande</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Principal interpréteur des résultats</xs:documentation>
+					</xs:annotation>
+					<xs:element name="OBR.33.1" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Principal interpréteur des résultats : code</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.33.2" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Principal interpréteur des résultats : nom</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.33.3" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Principal interpréteur des résultats : type de code</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Assistant</xs:documentation>
+					</xs:annotation>
+					<xs:element name="OBR.34.1" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Assistant : code</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.34.2" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Assistant : nom</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.34.3" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Assistant : type de code</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Technicien</xs:documentation>
+					</xs:annotation>
+					<xs:element name="OBR.35.1" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Technicien : code</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.35.2" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Technicien : nom</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.35.3" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Technicien : type de code</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Opérateur de saisie</xs:documentation>
+					</xs:annotation>
+					<xs:element name="OBR.36.1" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Opérateur de saisie : code</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.36.2" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Opérateur de saisie : nom</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBR.36.3" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Opérateur de saisie : type de code</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="OBR.37.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date et heure prévisionnelles de rendu des examens</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBR.38.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Pour compatibilité avec ERA (vide)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="C" minOccurs="0"/>
+				<xs:element ref="OBX" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OBX">
+		<xs:annotation>
+			<xs:documentation>Segment OBX : Résultat d'un test</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OBX.2.1">
+					<xs:annotation>
+						<xs:documentation>Rang du segment</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="OBX.3.1">
+					<xs:annotation>
+						<xs:documentation>Type du résultat</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="OBX.4.1">
+					<xs:annotation>
+						<xs:documentation>Test : Code</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="OBX.4.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Test : libellé</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.4.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Test : table de référence </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.4.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Test : second code</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.4.5" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Test : second libellé</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.4.6" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Test : seconde table de référence </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.5.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Sous identifiant du test</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="OBX.6.1" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Résultat : Code (ou resultat entier)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBX.6.2" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Resultat : Libellé</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OBX.6.3" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Resultat : table de référence  </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="OBX.7.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Unité : code 1</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.7.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Unité : libelle 1</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.7.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Unité : codification 1</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.7.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Unité : code 2</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.7.5" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Unité : libellé 2</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.7.6" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Unité : codification 2</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.8.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Normales</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.9.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Indicateurs d'anormalité</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.10.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Probabilité</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.11.1" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Nature des normales</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.12.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Statut des résultats</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.13.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date du dernier changement dans les valeurs normales et les unités</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.14.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Droit d'accès</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.15.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date d'obtention du résultat</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.16.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Secteur technique (Ordre d'édition)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.16.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Rang du secteur technique</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.16.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>code batterie à laquelle appartient le test</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.16.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>rang de la batterie à l'intérieur du secteur </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.16.5" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>rang du test à l'intérieur de la batterie</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.16.6" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>libre</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.17.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Valideur : code 1</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.17.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Valideur : libellé 1</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.17.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Valideur : codification 1</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.17.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Valideur : code 2</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.17.5" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Valideur : libelle 2</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OBX.17.6" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Valideur : codification 2</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="C" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="C">
+		<xs:annotation>
+			<xs:documentation>Segment C :  Commentaire</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="C.2.1">
+					<xs:annotation>
+						<xs:documentation>Rang du segment</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="C.3.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Origine du commentaire</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="C.4.1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Texte du commentaire</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FAC">
+		<xs:annotation>
+			<xs:documentation>Segment FAC : En-tête de facture</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="FAC.2.1">
+					<xs:annotation>
+						<xs:documentation>Rang du segment</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FAC.3.1">
+					<xs:annotation>
+						<xs:documentation>Numéro de dossier administratif pour le demandeur</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FAC.4.1">
+					<xs:annotation>
+						<xs:documentation>Numéro de demande pour l'exécutant</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FAC.5.1">
+					<xs:annotation>
+						<xs:documentation>Date des actes</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FAC.6.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identification du prescripteur : numéro</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="FAC.6.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identification du prescripteur : code</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="FAC.6.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identification du prescripteur : libellé</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="FAC.7.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identification du préleveur : numéro</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="FAC.7.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identification du préleveur : code</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="FAC.7.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identification du préleveur : libellé</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="FAC.8.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Demande incomplète non facturée</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="C" minOccurs="0"/>
+				<xs:element ref="REG" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ACT" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ACT">
+		<xs:annotation>
+			<xs:documentation>Segment ACT : Ligne de facture</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ACT.2.1">
+					<xs:annotation>
+						<xs:documentation>Rang du segment</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ACT.3.1">
+					<xs:annotation>
+						<xs:documentation>Lettre clé</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ACT.4.1">
+					<xs:annotation>
+						<xs:documentation>Coefficient</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ACT.5.1">
+					<xs:annotation>
+						<xs:documentation>Dénombrement</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ACT.6.1">
+					<xs:annotation>
+						<xs:documentation>Quantité</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ACT.7.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Libellé des actes</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ACT.8.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Type de majoration</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ACT.9.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identification de l'exécutant : numéro</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ACT.9.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identification de l'exécutant : code</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ACT.9.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identification de l'exécutant : libellé</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="ACT.10.1" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Nomenclature : codes</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ACT.10.2" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Nomenclature : codification</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="ACT.11.1">
+					<xs:annotation>
+						<xs:documentation>Code RMO</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="C" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="REG">
+		<xs:annotation>
+			<xs:documentation>Segment REG : Elément de règlement</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="REG.2.1">
+					<xs:annotation>
+						<xs:documentation>Rang du segment</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="REG.3.1">
+					<xs:annotation>
+						<xs:documentation>Numéro de dossier administratif clinique</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="REG.4.1">
+					<xs:annotation>
+						<xs:documentation>Montant réglé</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="REG.4.2">
+					<xs:annotation>
+						<xs:documentation>Unité (E pour EURO)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="REG.5.1">
+					<xs:annotation>
+						<xs:documentation>Sens</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="REG.6.1">
+					<xs:annotation>
+						<xs:documentation>Date du paiement</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="REG.7.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Mode de paiement</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="REG.8.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Numéro de dossier exécutant concerné par le règlement</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="C" minOccurs="0"/>
+				<xs:element ref="ACT" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AP">
+		<xs:annotation>
+			<xs:documentation>Segment AP : Assuré primaire</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="AP.2.1">
+					<xs:annotation>
+						<xs:documentation>Rang du segment</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AP.3.1">
+					<xs:annotation>
+						<xs:documentation>Nature d'assurance ou risque (maladie, maternité, AT,...)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AP.4.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date début de validité</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.5.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date fin  de validité</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.6.1">
+					<xs:annotation>
+						<xs:documentation>Numéro d'immatriculation</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AP.7.1">
+					<xs:annotation>
+						<xs:documentation>Rang bénéficiaire</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AP.8.1">
+					<xs:annotation>
+						<xs:documentation>Rang de naissance</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AP.9.1">
+					<xs:annotation>
+						<xs:documentation>Code grand régime</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AP.10.1">
+					<xs:annotation>
+						<xs:documentation>Caisse d'affiliation</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AP.11.1">
+					<xs:annotation>
+						<xs:documentation>Numéro du centre</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AP.12.1">
+					<xs:annotation>
+						<xs:documentation>Origine des droits (nature de la pièce justificative)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AP.13.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nature exonération</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.14.1">
+					<xs:annotation>
+						<xs:documentation>Nom de famille de l'assuré</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AP.14.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Prénom de l'assuré</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.14.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Deuxième prénom de l'assuré</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.14.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Sobriquet ou alias</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.14.5" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Civilité</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.14.6" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Diplôme</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.15.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nom de jeune fille</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.16.1">
+					<xs:annotation>
+						<xs:documentation>Taux de prise en charge</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AP.17.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Numéro accident travail</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.18.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>AT causé par un tiers</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.19.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date de fin de droits</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.20.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date d'accident</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.21.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nom de l'employeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.22.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ligne 1 de l'adresse employeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.22.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ligne 2 de l'adresse employeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.22.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ville employeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.22.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Libelllé département employeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.22.5" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Code postal employeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.22.6" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Pays employeur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AP.23.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date de début de grossesse</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="C" minOccurs="0"/>
+				<xs:element ref="AC" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="FAC" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="OBR" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AC">
+		<xs:annotation>
+			<xs:documentation>Segment AC : Assuré complémentaire</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="AC.2.1">
+					<xs:annotation>
+						<xs:documentation>Rang du segment</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AC.3.1">
+					<xs:annotation>
+						<xs:documentation>Code organisme ou mutuelle</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AC.4.1">
+					<xs:annotation>
+						<xs:documentation>Numéro d'adhérent mutuelle</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AC.4.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Compatibilité</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.5.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Date début de droits</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.6.1">
+					<xs:annotation>
+						<xs:documentation>Date fin de droits</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AC.7.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Type de contrat</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.8.1">
+					<xs:annotation>
+						<xs:documentation>Taux de remboursement Assurance complémentaire</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AC.8.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Base</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.8.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Plafonnement</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.8.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Coefficient multtiplicateur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.9.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Nom de la mutuelle</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.10.1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ligne 1 de l'adresse mutuelle</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.10.2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ligne 2 de l'adresse mutuelle</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.10.3" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ville mutuelle</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.10.4" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Libelllé département mutuelle</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.10.5" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Code postal mutuelle</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AC.10.6" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Pays mutuelle</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="C" minOccurs="0"/>
+				<xs:element ref="OBR" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="FAC" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

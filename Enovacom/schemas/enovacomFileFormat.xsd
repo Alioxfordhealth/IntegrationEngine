@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by USER USER (E.NOVACOM) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="enovacomFileFormat">
+		<xs:annotation>
+			<xs:documentation>Racine du descripteur de format enovacom</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="recordDesc" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:sequence maxOccurs="unbounded">
+                    <xs:annotation>
+                    	<xs:documentation>Suite ordonnée d'enregistrement et de groupes d'enregistrements</xs:documentation>
+                    </xs:annotation>
+                    <xs:element ref="record" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Décrit un enregistrement du fichier et contient éventuellement d'autres enregistrements ou groupes</xs:documentation>
+						</xs:annotation></xs:element>
+					<xs:element ref="group" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Groupe composé d'une succession d'enregistrements et de groupe</xs:documentation>
+						</xs:annotation></xs:element>
+				</xs:sequence>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Nom donné au format. Ce nom sera utilisé comme nom de l'élément racine du fichier XML</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="description" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Description libre du format</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="version" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Version donnée au format. Il est conseillé de faire évoluer la valeur de ce champ lors des modifications apportées au format</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="recordSep" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Séparateur(s) par défaut des enregistrements du fichier PIVOT. Vide par défaut (aucun séparateur). Peut contenir une liste de séparateurs séparés par une ,. Les caractères spéciaux \r,\n et \t sont acceptés.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="outputRecordSep" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Séparateur d'enregistrement utilisé en génération XML vers PIVOT. Vide par défaut (aucun séparateur). \r, \n et \t acceptés.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fieldSep" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Séparateur par défaut des champs d'un enregistrement. Vide par défaut (aucun séparateur). \r, \n et \t acceptés</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="skip" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Liste de caractères à ignorer. Vide par défaut (aucun caractère ignoré). \r, \n et \t acceptés. Ex : \r\n ignore les CR et les LF indépendamment</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="maxRecordSize" type="xs:integer">
+				<xs:annotation>
+					<xs:documentation>Taille maximum d'un enregistrement. Par défaut un enregistrement ne peut pas dépasser 1300 caractères.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="recordDesc">
+        <xs:annotation>
+        	<xs:documentation>Permet de décrire un enregistrement du fichier PIVOT. L'utilisation de cet élément est facultative car la description de l'enregistrement peut s'effectuer dans l'élément record. Il est conseillé d'utiliser cet élément si plusieurs enregistrements du même type peuvent intervenir à différentes positions dans le fichier.
+        	</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+			<xs:sequence>
+				<xs:element name="field" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                    	<xs:documentation>Descriptif ordonné des champs de l'enregistrement.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Nom donné au champ. Ce nom sera le nom de l'élément XML correspondant à ce champ</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="minLength" type="xs:integer" default="1">
+							<xs:annotation>
+								<xs:documentation>Longueur minimale du champ</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="maxLength" type="xs:integer" default="255">
+							<xs:annotation>
+								<xs:documentation>Longueur maximale du champ</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="value" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Valeur fixe du champ. Si une valeur est indiquée dans cet attribut, alors seuls les enregistrements ayant exactement la valeur indiquée à cette position vont correspondre à cette description</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="match" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Regex pour Match du champ. Si une valeur est indiquée dans cet attribut, alors seuls les enregistrements dont la valeur à cette position matche l'expression régulière vont correspondre à cette description</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="padLeft" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Caractère de padding à gauche. Valeur du caractère supprimé à gauche en PIVOT vers XML et rajouté à gauche pour atteindre minLength en XML vers PIVOT</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="padRight" type="xs:string" default=" ">
+							<xs:annotation>
+								<xs:documentation>Caractère de padding à droite. Par défaut les espaces à droite sont supprimés. Valeur du caractère supprimé à droite en PIVOT vers XML et rajouté à droite pour atteindre minLength en XML vers PIVOT</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="fieldSep" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Séparateur du champ. Si vide égal à celui décrit dans l'élément parent ou à défaut celui décrit dans l'élément racine</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="quoted" type="xs:boolean" default="false">
+							<xs:annotation>
+								<xs:documentation>Indique si la valeur est entourée de double quotes. Elles sont supprimées en PIVOT vers XML et rajoutées en XML vers PIVOT</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="binary" type="xs:boolean" default="false">
+							<xs:annotation>
+								<xs:documentation>Indique si la valeur peut contenir du binaire et donc est encodée en base64 dans le document XML</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Nom donné au descriptif d'enregistrement. Ce nom ne se retrouve pas dans le fichier XML généré mais est utilisé comme référence par l'élément record.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fieldSep" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Séparateur par défaut des champs de cet enregistrement. Par défaut égal à la valeur de fieldSep de l'élément racine. \r, \n et \t acceptés</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="record">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="field" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                    	<xs:documentation>Descriptif ordonné des champs de l'enregistrement. Les éléments field sont ignorés si le record fait référence à un recordDesc (attribut ref).</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Nom donné au champ. Ce nom sera le nom de l'élément XML correspondant à ce champ</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="minLength" type="xs:integer" default="1">
+							<xs:annotation>
+								<xs:documentation>Longueur minimale du champ</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="maxLength" type="xs:int" default="255">
+							<xs:annotation>
+								<xs:documentation>Longueur maximale du champ</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="value" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Valeur fixe du champ. Si une valeur est indiquée dans cet attribut, alors seuls les enregistrements ayant exactement la valeur indiquée à cette position vont correspondre à cette description</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="match" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Regex pour Match du champ. Si une valeur est indiquée dans cet attribut, alors seuls les enregistrements dont la valeur à cette position matche l'expression régulière vont correspondre à cette description</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="padLeft" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Caractère de padding à gauche. Valeur du caractère supprimé à gauche en PIVOT vers XML et rajouté à gauche pour atteindre minLength en XML vers PIVOT</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="padRight" type="xs:string" default=" ">
+							<xs:annotation>
+								<xs:documentation>Caractère de padding à droite. Par défaut les espaces à droite sont supprimés. Valeur du caractère supprimé à droite en PIVOT vers XML et rajouté à droite pour atteindre minLength en XML vers PIVOT</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="fieldSep" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Séparateur du champ. Si vide égal à celui décrit dans l'élément parent ou à défaut celui décrit dans l'élément racine</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="quoted" type="xs:boolean" default="false">
+							<xs:annotation>
+								<xs:documentation>Indique si la valeur est entourée de double quotes. Elles sont supprimées en PIVOT vers XML et rajoutées en XML vers PIVOT</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="binary" type="xs:boolean" default="false">
+							<xs:annotation>
+								<xs:documentation>Indique si la valeur peut contenir du binaire et donc est encodée en base64 dans le document XML</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="record" minOccurs="0"/>
+					<xs:element ref="group" minOccurs="0"/>
+				</xs:sequence>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Nom donné à l'enregistrement. Ce nom sera celui donné à l'élément XML représentant l'enregistrement dans le fichier XML généré</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ref" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Référence vers la description d'enregistrement éventuelle (attribut name de recordDesc). Si présent les éventuels éléments field présent dans ce record sont ignorés.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="minOccurs" type="xs:integer" default="1">
+				<xs:annotation>
+					<xs:documentation>Nombre minimum d'occurence de cet enregistrement. 1 par défaut (obligatoire). Mettre 0 pour facultatif</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="maxOccurs" type="xs:string" default="1">
+				<xs:annotation>
+					<xs:documentation>Nombre maximum d'occurence de cet enregistrement. 1 par défaut. Indiquer 0 ou unbounded pour illimité</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="recordSep" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Séparateur(s) de fin d'enregistrement du fichier PIVOT. Par défaut égal à celui défini dans l'élément racine. Peut contenir une liste de séparateurs séparés par une ,. Les caractères spéciaux \r,\n et \t sont acceptés.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="outputRecordSep" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Séparateur d'enregistrement utilisé en génération XML vers PIVOT. Par défaut égal à celui défini dans l'élément racine. \r, \n et \t acceptés.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fieldSep" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Séparateur par défaut des champs de cet enregistrement. Par défaut égal à la valeur de fieldSep de l'élément recordDesc ou à défaut celui de l'élément racine. \r, \n et \t acceptés</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="group">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="record" minOccurs="0"/>
+				<xs:element ref="group" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="name">
+				<xs:annotation>
+					<xs:documentation>Nom donné au groupe d'enregistrement. Ce nom sera celui donné à l'élément XML représentant le groupe d'enregistrement</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="minOccurs" type="xs:integer" default="1">
+				<xs:annotation>
+					<xs:documentation>Nombre minimum d'occurences de ce groupe d'enregistrement. 1 par défaut (obligatoire). Mettre 0 pour facultatif</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="maxOccurs" type="xs:string" default="1">
+				<xs:annotation>
+					<xs:documentation>Nombre maximum d'occurences de ce groupe d'enregistrement. 1 par défaut. Indiquer 0 ou unbounded pour illimité</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

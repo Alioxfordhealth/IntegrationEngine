@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="hprimMedecin">
+		<xs:annotation>
+			<xs:documentation>Schema Hprim Medecin Antares V2</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="identification" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="emetteur"/>
+							<xs:element name="cabinetDestinataire"/>
+							<xs:element name="medecinDestinataire"/>
+							<xs:element name="tableAscii"/>
+							<xs:element name="versionProtocole"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="message" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="identificationPatient">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="codePatient" minOccurs="0"/>
+										<xs:element name="nomPatient" minOccurs="0"/>
+										<xs:element name="prenomPatient" minOccurs="0"/>
+										<xs:element name="adresse1" minOccurs="0"/>
+										<xs:element name="adresse2" minOccurs="0"/>
+										<xs:element name="codePostal" minOccurs="0"/>
+										<xs:element name="ville" minOccurs="0"/>
+										<xs:element name="dateNaissance" minOccurs="0"/>
+										<xs:element name="codeSS" minOccurs="0"/>
+										<xs:element name="cleSS" minOccurs="0"/>
+										<xs:element name="numeroDossier" minOccurs="0"/>
+										<xs:element name="dateDossier" minOccurs="0"/>
+										<xs:element name="codeCorrespondant" minOccurs="0"/>
+										<xs:element name="nomCorrespondant" minOccurs="0"/>
+										<xs:element name="codePrescripteur" minOccurs="0"/>
+										<xs:element name="nomPrescripteur" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="compteRenduTexte">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ligne" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="compteRenduCodifie" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence maxOccurs="unbounded">
+										<xs:element name="texte" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="resultat" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="libelle" minOccurs="0"/>
+													<xs:element name="codeAnalyse" minOccurs="0"/>
+													<xs:element name="typeResultat" minOccurs="0"/>
+													<xs:element name="resultat1" minOccurs="0"/>
+													<xs:element name="unite1" minOccurs="0"/>
+													<xs:element name="valeurNormaleInf1" minOccurs="0"/>
+													<xs:element name="valeurNormaleSup1" minOccurs="0"/>
+													<xs:element name="indicateurAnormalite" minOccurs="0"/>
+													<xs:element name="statutResultat" minOccurs="0"/>
+													<xs:element name="resultat2" minOccurs="0"/>
+													<xs:element name="unite2" minOccurs="0"/>
+													<xs:element name="valeurNormaleInf2" minOccurs="0"/>
+													<xs:element name="valeurNormaleSup2" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

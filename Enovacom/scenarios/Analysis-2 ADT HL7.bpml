@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package targetNamespace="Analysis-2 ADT HL7" version="2.40.1.0" xmlns="http://www.bpmi.org/2002/BPML/process">
+<process id="bf1bfdf2" name="Analysis-2 ADT HL7">
+<context/>
+<action comment="false" id="1f73f247" name="Analysis-2 ADT HL7" nomAffiche="Data Analysis HL7 2.5">
+<documentation>Parses and queries HL7 messages to retrieve patient data</documentation>
+<input formatter="XML" property="InputMessage"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<action comment="false" id="627a09ff" name="actionActivity" nomAffiche="Extract content">
+<documentation/>
+<input formatter="HL7 CRLF UTF" property="InputMessage"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">getContent</extension>
+<extension name="decode">true</extension>
+<extension name="numContent">1</extension>
+<extension name="throwException">true</extension>
+</attributes>
+</action>
+<action comment="false" id="f04902b4" name="actionActivity" nomAffiche="Current date">
+<documentation/>
+<input formatter="Texte" property="currentDate"/>
+<attributes xmlns="">
+<extension name="activityName">dateCourante</extension>
+<extension name="monthsToAdd"/>
+<extension name="hoursToRemove"/>
+<extension name="daysToAdd"/>
+<extension name="hoursToAdd"/>
+<extension name="minutesToRemove"/>
+<extension name="minutesToAdd"/>
+<extension name="format">yyyyMMddHHmmssSSS</extension>
+<extension name="daysToRemove"/>
+<extension name="monthsToRemove"/>
+</attributes>
+</action>
+<assign comment="false" formatter="Texte" id="5888b755" name="assignActivity" nomAffiche="Assign variable : IdDoc=currentDate.hl7" property="InputIddocument">
+<documentation/>
+<source/>
+<value>$currentDate;.hl7</value>
+</assign>
+<action comment="false" id="b5a9f2ab" name="actionActivity" nomAffiche="XPath Query IPP APP1">
+<input formatter="Texte" property="InputDonneeapp1"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">requeteXpath</extension>
+<extension name="root_name">root</extension>
+<extension name="useOutputEncoding">true</extension>
+<extension name="requete_xpath">//PID.4.5[contains(text(),'PI')]/preceding::PID.4.1[1]/text()</extension>
+<extension name="actionVide">chainevide</extension>
+<extension name="xpathVersion1">true</extension>
+</attributes>
+</action>
+<action comment="false" id="1cd442dd" name="actionActivity" nomAffiche="XPath Query Stay ID APP2">
+<input formatter="Texte" property="InputDonneeapp2"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">requeteXpath</extension>
+<extension name="root_name">root</extension>
+<extension name="useOutputEncoding">true</extension>
+<extension name="requete_xpath">//PID.19.1/text()</extension>
+<extension name="actionVide">chainevide</extension>
+<extension name="xpathVersion1">true</extension>
+</attributes>
+</action>
+<action comment="false" id="1b594c19" name="actionActivity" nomAffiche="XPath Query Gender">
+<input formatter="Texte" property="gender"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">requeteXpath</extension>
+<extension name="root_name">root</extension>
+<extension name="useOutputEncoding">true</extension>
+<extension name="requete_xpath">//PID.9.1/text()</extension>
+<extension name="actionVide">chainevide</extension>
+<extension name="xpathVersion1">true</extension>
+</attributes>
+</action>
+<switch id="5fa4e16c" name="switchActivity">
+<case comment="false" id="e328faf6" nomAffiche="If gender=F get maiden name" open="true">
+<documentation/>
+<condition expression="$gender;=='F'"/>
+<context/>
+<action comment="false" id="2ac8af23" name="actionActivity" nomAffiche="XPath Query Name Firstname APP3">
+<input formatter="Texte" property="InputDonneeapp3"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">requeteXpath</extension>
+<extension name="root_name">root</extension>
+<extension name="useOutputEncoding">true</extension>
+<extension name="requete_xpath">concat(//PID.6.7[contains(text(),'D')]/preceding::PID.6.1[1]/text(),' (',//PID.6.7[contains(text(),'L')]/preceding::PID.6.1[1]/text(),') ',//PID.6.7[contains(text(),'D')]/preceding::PID.6.2[1]/text())</extension>
+<extension name="actionVide">chainevide</extension>
+<extension name="xpathVersion1">true</extension>
+</attributes>
+</action>
+</case>
+<default comment="false" id="e0c17954" nomAffiche="Else" open="true">
+<condition/>
+<context/>
+<action comment="false" id="71af4996" name="actionActivity" nomAffiche="XPath Query Name Firstname APP3">
+<input formatter="Texte" property="InputDonneeapp3"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">requeteXpath</extension>
+<extension name="root_name">root</extension>
+<extension name="useOutputEncoding">true</extension>
+<extension name="requete_xpath">concat(//PID.6.7[contains(text(),'D')]/preceding::PID.6.1[1]/text(),' ',//PID.6.7[contains(text(),'D')]/preceding::PID.6.2[1]/text())</extension>
+<extension name="actionVide">chainevide</extension>
+<extension name="xpathVersion1">true</extension>
+</attributes>
+</action>
+</default>
+</switch>
+<action comment="false" id="d946b8c4" name="actionActivity" nomAffiche="XPath Query Birthdate APP4">
+<input formatter="Texte" property="InputDonneeapp4"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">requeteXpath</extension>
+<extension name="root_name">root</extension>
+<extension name="useOutputEncoding">true</extension>
+<extension name="requete_xpath">concat(substring(//PID.8.1/text(),7,2),'/',substring(//PID.8.1/text(),5,2),'/',substring(//PID.8.1/text(),1,4))</extension>
+<extension name="actionVide">chainevide</extension>
+<extension name="xpathVersion1">true</extension>
+</attributes>
+</action>
+<action comment="false" id="2ded0ed9" name="actionActivity" nomAffiche="XPath Query localisation : APP5">
+<input formatter="Texte" property="InputDonneeapp5"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">requeteXpath</extension>
+<extension name="root_name">root</extension>
+<extension name="useOutputEncoding">true</extension>
+<extension name="requete_xpath">concat(//PV1.4.1/text(),'-',//PV1.4.2/text(),'-',//PV1.4.3/text())</extension>
+<extension name="actionVide">chainevide</extension>
+<extension name="xpathVersion1">true</extension>
+</attributes>
+</action>
+<action comment="false" id="510a8a1f" name="actionActivity" nomAffiche="XPath Query HL7 Event APP6">
+<input formatter="Texte" property="InputDonneeapp6"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">requeteXpath</extension>
+<extension name="root_name">root</extension>
+<extension name="useOutputEncoding">true</extension>
+<extension name="requete_xpath">//MSH.9.2/text()</extension>
+<extension name="actionVide">chainevide</extension>
+<extension name="xpathVersion1">true</extension>
+</attributes>
+</action>
+<action comment="false" id="2e239890" name="actionActivity" nomAffiche="Call Scenario Filter">
+<documentation/>
+<input formatter="Texte" property="runRouteResponse_1"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">runRoute</extension>
+<extension name="sendmode">asynchrone</extension>
+<extension name="routeKey">Filter ADT HL7</extension>
+</attributes>
+</action>
+<attributes xmlns="">
+<extension name="activityName">eventAction</extension>
+<extension name="maxNumberOfThreads">1</extension>
+</attributes>
+</action>
+</process>
+</package>

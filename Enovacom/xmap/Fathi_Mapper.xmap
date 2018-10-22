@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping last-modif="23/08/18  14:23:12" mapping-id="15350288481122"
+    version="1.2.6" version-xmap="1.2.6"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xslt-name="Fathi_Mapper">
+    <user-category
+        description="Input/output components of the user functions" name="Inputs/outputs"/>
+    <children>
+        <component id="4" inputs-min="2" inputs-number="2" name="concat">
+            <view height="66" posx="916" posy="177" width="108"/>
+        </component>
+        <component id="3" name="param">
+            <property name="valueDef" value="ABC"/>
+            <property name="name" value="Prefix"/>
+            <view height="48" posx="751" posy="187" width="70"/>
+        </component>
+        <component id="5" inputs-min="1" name="string-length">
+            <view height="48" posx="869" posy="867" width="81"/>
+        </component>
+        <component id="8" name="constant">
+            <property name="value" value="-"/>
+            <view height="48" posx="789" posy="984" width="88"/>
+        </component>
+        <component id="7" inputs-min="2" inputs-number="3" name="concat">
+            <view height="84" posx="1066" posy="860" width="108"/>
+        </component>
+        <component id="0" name="InputDocument">
+            <view height="989" posx="282" posy="275" width="456"/>
+            <document instance="..\Instances\instaceXML.xml" root="root" schema="..\Schema\trainingHL7schema.xsd">
+                <entry expanded="true" indexedPath="/root_1" name="root" path="/root">
+                    <entry copy="false" expanded="true"
+                        indexedPath="/root_1/MSH_1" instance-number="1"
+                        name="MSH" path="/root/MSH"/>
+                    <entry copy="false" expanded="true"
+                        indexedPath="/root_1/PID_1" instance-number="1"
+                        name="PID" path="/root/PID"/>
+                </entry>
+                <bounds height="941" width="448" x="-2" y="-1"/>
+            </document>
+        </component>
+        <component id="1" name="OutputDocument">
+            <view height="582" posx="1256" posy="280" width="395"/>
+            <document encoding="UTF-8" root="root" schema="..\Schema\Training CSV UTF-8.xsd">
+                <entry expanded="true" indexedPath="/root_1" name="root" path="/root">
+                    <entry copy="false" expanded="true"
+                        indexedPath="/root_1/row_1" instance-number="1"
+                        name="row" path="/root/row">
+                        <entry copy="false" expanded="false"
+                            indexedPath="/root_1/row_1/firstname_1"
+                            instance-number="1" name="firstname" path="/root/row/firstname"/>
+                        <entry copy="false" expanded="false"
+                            indexedPath="/root_1/row_1/lastname_1"
+                            instance-number="1" name="lastname" path="/root/row/lastname"/>
+                        <entry copy="false" expanded="false"
+                            indexedPath="/root_1/row_1/id_1"
+                            instance-number="1" name="id" path="/root/row/id"/>
+                    </entry>
+                </entry>
+                <bounds height="552" width="387" x="-2" y="-1"/>
+            </document>
+        </component>
+    </children>
+    <graph>
+        <edge>
+            <comment>&lt;html&gt;&lt;body&gt;In : trainingHL7schema : &lt;B&gt;PID.5.2&lt;/B&gt;  -&gt; Out : Training CSV UTF-8 : &lt;B&gt;lastname&lt;/B&gt;&lt;/body&gt;&lt;/html&gt;</comment>
+            <source indexedPath="/root_1/PID_1/PID.5.2_1"
+                instance-number="1" path="/root/PID/PID.5.2"
+                sourceComponentId="0" sourcePos="0"/>
+            <target indexedPath="/root_1/row_1/lastname_1"
+                instance-number="1" path="/root/row/lastname"
+                targetComponentId="1" targetPos="0"/>
+        </edge>
+        <edge>
+            <comment>&lt;html&gt;&lt;body&gt;Prefix  : &lt;B&gt;"ABC" &lt;/B&gt;  -&gt; concatenate  : &lt;B&gt;string1&lt;/B&gt;&lt;/body&gt;&lt;/html&gt;</comment>
+            <source sourceComponentId="3" sourcePos="0"/>
+            <target targetComponentId="4" targetPos="0"/>
+        </edge>
+        <edge>
+            <comment>&lt;html&gt;&lt;body&gt;In : trainingHL7schema : &lt;B&gt;PID.5.1&lt;/B&gt;  -&gt; concatenate  : &lt;B&gt;string2&lt;/B&gt;&lt;/body&gt;&lt;/html&gt;</comment>
+            <source indexedPath="/root_1/PID_1/PID.5.1_1"
+                instance-number="1" path="/root/PID/PID.5.1"
+                sourceComponentId="0" sourcePos="0"/>
+            <target targetComponentId="4" targetPos="1"/>
+        </edge>
+        <edge>
+            <comment>&lt;html&gt;&lt;body&gt;concatenate  : &lt;B&gt;result&lt;/B&gt;  -&gt; Out : Training CSV UTF-8 : &lt;B&gt;firstname&lt;/B&gt;&lt;/body&gt;&lt;/html&gt;</comment>
+            <source sourceComponentId="4" sourcePos="0"/>
+            <target indexedPath="/root_1/row_1/firstname_1"
+                instance-number="1" path="/root/row/firstname"
+                targetComponentId="1" targetPos="0"/>
+        </edge>
+        <edge>
+            <comment>&lt;html&gt;&lt;body&gt;In : trainingHL7schema : &lt;B&gt;PID.3.1&lt;/B&gt;  -&gt; length  : &lt;B&gt;string&lt;/B&gt;&lt;/body&gt;&lt;/html&gt;</comment>
+            <source indexedPath="/root_1/PID_1/PID.3.1_1"
+                instance-number="1" path="/root/PID/PID.3.1"
+                sourceComponentId="0" sourcePos="0"/>
+            <target targetComponentId="5" targetPos="0"/>
+        </edge>
+        <edge>
+            <comment>&lt;html&gt;&lt;body&gt;Constant  : &lt;B&gt; "-" &lt;/B&gt;  -&gt; concatenate  : &lt;B&gt;string2&lt;/B&gt;&lt;/body&gt;&lt;/html&gt;</comment>
+            <source sourceComponentId="8" sourcePos="0"/>
+            <target targetComponentId="7" targetPos="1"/>
+        </edge>
+        <edge>
+            <comment>&lt;html&gt;&lt;body&gt;concatenate  : &lt;B&gt;result&lt;/B&gt;  -&gt; Out : Training CSV UTF-8 : &lt;B&gt;id&lt;/B&gt;&lt;/body&gt;&lt;/html&gt;</comment>
+            <source sourceComponentId="7" sourcePos="0"/>
+            <target indexedPath="/root_1/row_1/id_1" instance-number="1"
+                path="/root/row/id" targetComponentId="1" targetPos="0"/>
+        </edge>
+        <edge>
+            <comment>&lt;html&gt;&lt;body&gt;length  : &lt;B&gt;result&lt;/B&gt;  -&gt; concatenate  : &lt;B&gt;string3&lt;/B&gt;&lt;/body&gt;&lt;/html&gt;</comment>
+            <source sourceComponentId="5" sourcePos="0"/>
+            <target targetComponentId="7" targetPos="2"/>
+        </edge>
+        <edge>
+            <comment>&lt;html&gt;&lt;body&gt;In : trainingHL7schema : &lt;B&gt;PID.3.1&lt;/B&gt;  -&gt; concatenate  : &lt;B&gt;string1&lt;/B&gt;&lt;/body&gt;&lt;/html&gt;</comment>
+            <source indexedPath="/root_1/PID_1/PID.3.1_1"
+                instance-number="1" path="/root/PID/PID.3.1"
+                sourceComponentId="0" sourcePos="0"/>
+            <target targetComponentId="7" targetPos="0"/>
+        </edge>
+    </graph>
+</mapping>

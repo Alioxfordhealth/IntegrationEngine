@@ -1,0 +1,89 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MSH">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="MSH.2.1"/>
+              <xs:element type="xs:string" name="MSH.3.1"/>
+              <xs:element type="xs:string" name="MSH.4.1"/>
+              <xs:element type="xs:string" name="MSH.5.1"/>
+              <xs:element type="xs:string" name="MSH.6.1"/>
+              <xs:element type="xs:float" name="MSH.7.1"/>
+              <xs:element type="xs:string" name="MSH.8.1"/>
+              <xs:element type="xs:string" name="MSH.9.1"/>
+              <xs:element type="xs:string" name="MSH.9.2"/>
+              <xs:element type="xs:string" name="MSH.9.3"/>
+              <xs:element type="xs:long" name="MSH.10.1"/>
+              <xs:element type="xs:string" name="MSH.11.1"/>
+              <xs:element type="xs:float" name="MSH.12.1"/>
+              <xs:element type="xs:string" name="MSH.18.1"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EVN">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:long" name="EVN.2.1"/>
+              <xs:element type="xs:string" name="EVN.5.1"/>
+              <xs:element type="xs:long" name="EVN.6.1"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PID">
+          <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+              <xs:element type="xs:byte" name="PID.1.1"/>
+              <xs:element type="xs:int" name="PID.3.1"/>
+              <xs:element type="xs:string" name="PID.3.2"/>
+              <xs:element type="xs:string" name="PID.3.3"/>
+              <xs:element type="xs:string" name="PID.3.4"/>
+              <xs:element type="xs:string" name="PID.3.5"/>
+              <xs:element type="xs:string" name="PID.3.6"/>
+              <xs:element type="xs:string" name="PID.3.7"/>
+              <xs:element type="xs:string" name="PID.5.1"/>
+              <xs:element type="xs:string" name="PID.5.2"/>
+              <xs:element type="xs:string" name="PID.5.3"/>
+              <xs:element type="xs:string" name="PID.5.4"/>
+              <xs:element type="xs:string" name="PID.5.5"/>
+              <xs:element type="xs:string" name="PID.5.6"/>
+              <xs:element type="xs:string" name="PID.5.7"/>
+              <xs:element type="xs:string" name="PID.6.5"/>
+              <xs:element type="xs:int" name="PID.7.1"/>
+              <xs:element type="xs:string" name="PID.8.1"/>
+              <xs:element type="xs:string" name="PID.11.1"/>
+              <xs:element type="xs:string" name="PID.11.2"/>
+              <xs:element type="xs:string" name="PID.11.3"/>
+              <xs:element type="xs:string" name="PID.11.4"/>
+              <xs:element type="xs:string" name="PID.11.5"/>
+              <xs:element type="xs:string" name="PID.11.6"/>
+              <xs:element type="xs:string" name="PID.11.7"/>
+              <xs:element type="xs:string" name="PID.13.1"/>
+              <xs:element type="xs:string" name="PID.13.2"/>
+              <xs:element type="xs:string" name="PID.13.3"/>
+              <xs:element type="xs:string" name="PID.13.4"/>
+              <xs:element type="xs:string" name="PID.13.5"/>
+              <xs:element type="xs:string" name="PID.14.1"/>
+              <xs:element type="xs:string" name="PID.14.2"/>
+              <xs:element type="xs:string" name="PID.14.3"/>
+              <xs:element type="xs:string" name="PID.14.4"/>
+              <xs:element type="xs:string" name="PID.18.1"/>
+              <xs:element type="xs:string" name="PID.18.2"/>
+              <xs:element type="xs:string" name="PID.18.3"/>
+              <xs:element type="xs:string" name="PID.18.4"/>
+              <xs:element type="xs:string" name="PID.21.1"/>
+              <xs:element type="xs:string" name="PID.21.2"/>
+              <xs:element type="xs:string" name="PID.21.3"/>
+              <xs:element type="xs:string" name="PID.21.4"/>
+              <xs:element type="xs:string" name="PID.21.5"/>
+              <xs:element type="xs:string" name="PID.30.1"/>
+              <xs:element type="xs:string" name="PID.32.1"/>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

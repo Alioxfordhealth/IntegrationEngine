@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package targetNamespace="Transform ADT HL7" version="2.40.1.0" xmlns="http://www.bpmi.org/2002/BPML/process">
+<process id="32ff02dd" name="Transform ADT HL7">
+<context/>
+<action comment="false" id="6092c301" name="Transform ADT HL7" nomAffiche="Transform ADT HL7">
+<documentation>Applies a XSL transformation to HL7 message</documentation>
+<input formatter="HL7 CRLF UTF" property="InputMessage"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<assign comment="false" formatter="Texte" id="5eb74c71" name="assignActivity" nomAffiche="Assign variable header" property="header">
+<documentation/>
+<source/>
+<value>ENOVACOM</value>
+</assign>
+<action comment="false" id="d4f994b2" name="actionActivity" nomAffiche="XSL transformation Replace Value">
+<input formatter="XML" property="InputMessage"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">stylesheet</extension>
+<extension name="paramName1">valCible</extension>
+<extension name="paramName0">nomElement</extension>
+<extension name="stylesheetLocation">ReplaceValue.xslt</extension>
+<extension name="paramValue0">MSH.3.1</extension>
+<extension name="paramValue1">$header;</extension>
+<extension name="xpathVersion1">true</extension>
+</attributes>
+</action>
+<action comment="false" id="d07b10be" name="actionActivity" nomAffiche="Change format to HL7">
+<documentation>Result of XSL transform is always raw XML, so a format change is needed</documentation>
+<input formatter="HL7 CRLF UTF" property="InputMessage"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">transformationDeFormat</extension>
+</attributes>
+</action>
+<action comment="false" id="672a0708" name="actionActivity" nomAffiche="Enqueue file ">
+<documentation/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">depotFichier</extension>
+<extension name="append">false</extension>
+<extension name="conf1"/>
+<extension name="conf2b"/>
+<extension name="conf3"/>
+<extension name="conf2a"/>
+<extension name="commandsAfterCopy"/>
+<extension name="isUniqueName">false</extension>
+<extension name="errorWorkflow"/>
+<extension name="serviceOutKey">Directory Writing ADT HL7</extension>
+<extension name="path">c:\enovacom\eai\Reception</extension>
+<extension name="fileName">$InputIddocument;</extension>
+<extension name="successWorkflow"/>
+<extension name="waitIfPresent">false</extension>
+<extension name="commandsBeforeCopy"/>
+</attributes>
+</action>
+<attributes xmlns="">
+<extension name="activityName">eventAction</extension>
+<extension name="maxNumberOfThreads">1</extension>
+</attributes>
+</action>
+</process>
+</package>

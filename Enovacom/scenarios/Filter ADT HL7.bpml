@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package targetNamespace="Filter ADT HL7" version="2.40.1.0" xmlns="http://www.bpmi.org/2002/BPML/process">
+<process id="aeb9d333" name="Filter ADT HL7">
+<context/>
+<action comment="false" id="f0485f8d" name="Filter ADT HL7" nomAffiche="Filter ADT HL7 2.5">
+<documentation>Filters messages according to HL7 event then sends content to outbound service</documentation>
+<input formatter="HL7 CRLF UTF" property="InputMessage"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<action comment="false" id="74c71597" name="actionActivity" nomAffiche="XPath query Event">
+<input formatter="Texte" property="event"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">requeteXpath</extension>
+<extension name="root_name"/>
+<extension name="useOutputEncoding">true</extension>
+<extension name="requete_xpath">//MSH.9.2/text()</extension>
+<extension name="actionVide">chainevide</extension>
+<extension name="xpathVersion1">true</extension>
+</attributes>
+</action>
+<switch id="a10b6d01" name="switchActivity">
+<case comment="false" id="3ab6ede7" nomAffiche="If event = A28 or A31 or A01 or A40" open="true">
+<documentation/>
+<condition expression="$event; == 'A28' or $event; == 'A31' or $event; == 'A01'  or $event; == 'A40'"/>
+<context/>
+<action comment="false" id="c1f5bd19" name="actionActivity" nomAffiche="Enqueue file ">
+<documentation/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">depotFichier</extension>
+<extension name="append">false</extension>
+<extension name="conf1"/>
+<extension name="conf2b"/>
+<extension name="conf3"/>
+<extension name="conf2a"/>
+<extension name="commandsAfterCopy"/>
+<extension name="isUniqueName">false</extension>
+<extension name="errorWorkflow"/>
+<extension name="serviceOutKey">Directory Writing ADT HL7</extension>
+<extension name="path">c:\enovacom\eai\Reception</extension>
+<extension name="fileName">$InputIddocument;</extension>
+<extension name="successWorkflow"/>
+<extension name="waitIfPresent">false</extension>
+<extension name="commandsBeforeCopy"/>
+</attributes>
+</action>
+</case>
+<default comment="false" id="c80d8c9f" nomAffiche="Else generates an error" open="true">
+<documentation/>
+<condition/>
+<context/>
+<action comment="false" id="2b4d7470" name="actionActivity" nomAffiche="Exception">
+<documentation/>
+<attributes xmlns="">
+<extension name="activityName">genException</extension>
+<extension name="user_exception">Unexpected message received: $event;</extension>
+</attributes>
+</action>
+</default>
+</switch>
+<attributes xmlns="">
+<extension name="activityName">eventAction</extension>
+<extension name="maxNumberOfThreads">1</extension>
+</attributes>
+</action>
+</process>
+</package>
