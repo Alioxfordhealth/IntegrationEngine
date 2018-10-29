@@ -53,10 +53,6 @@
 <type>HL7-HPRIM</type>
 <propsFormat>
 <propFormat>
-<nom>standardHl7FieldSequence</nom>
-<valeur>true</valeur>
-</propFormat>
-<propFormat>
 <nom>ENCODING</nom>
 <valeur>UTF-8</valeur>
 </propFormat>
@@ -79,6 +75,10 @@
 <propFormat>
 <nom>lineSeparator</nom>
 <valeur>\r</valeur>
+</propFormat>
+<propFormat>
+<nom>standardHl7FieldSequence</nom>
+<valeur>true</valeur>
 </propFormat>
 </propsFormat>
 </format>
@@ -191,14 +191,6 @@
 <type>CSV</type>
 <propsFormat>
 <propFormat>
-<nom>HASHEADERS</nom>
-<valeur>true</valeur>
-</propFormat>
-<propFormat>
-<nom>HEADERTAGS</nom>
-<valeur>COLL:</valeur>
-</propFormat>
-<propFormat>
 <nom>ROOTNAME</nom>
 <valeur>resultSet</valeur>
 </propFormat>
@@ -225,6 +217,14 @@
 <propFormat>
 <nom>REMOVESPACES</nom>
 <valeur>true</valeur>
+</propFormat>
+<propFormat>
+<nom>HASHEADERS</nom>
+<valeur>true</valeur>
+</propFormat>
+<propFormat>
+<nom>HEADERTAGS</nom>
+<valeur>COLL:</valeur>
 </propFormat>
 </propsFormat>
 </format>
@@ -439,6 +439,34 @@
 <obligatoire>true</obligatoire>
 <description>The name of the organisation</description>
 </propriete>
+<propriete id="61">
+<nom>Packaging - Documentation directory</nom>
+<type>STRING</type>
+<sousType/>
+<obligatoire>true</obligatoire>
+<description>Documentation directory, will be added to connector zip file</description>
+</propriete>
+<propriete id="62">
+<nom>Packaging - Installation directory</nom>
+<type>STRING</type>
+<sousType/>
+<obligatoire>true</obligatoire>
+<description>ESv2 installation directory</description>
+</propriete>
+<propriete id="63">
+<nom>Packaging - Other files directory</nom>
+<type>STRING</type>
+<sousType/>
+<obligatoire>true</obligatoire>
+<description>Other files to be added to connector zip (if relevant)</description>
+</propriete>
+<propriete id="64">
+<nom>Packaging - Work directory</nom>
+<type>STRING</type>
+<sousType/>
+<obligatoire>true</obligatoire>
+<description>Temporary work directory necessary to generate packages</description>
+</propriete>
 <propriete id="4">
 <nom>Production status</nom>
 <type>BOOLEAN</type>
@@ -483,6 +511,28 @@
 </propriete>
 </proprietes>
 <modelesApplication>
+<application id="81">
+<nom>Packaging - Connector generation</nom>
+<desc/>
+<proprietesApplication>
+<proprieteApplication>
+<refPropriete id="64"/>
+<valeur/>
+</proprieteApplication>
+<proprieteApplication>
+<refPropriete id="61"/>
+<valeur/>
+</proprieteApplication>
+<proprieteApplication>
+<refPropriete id="63"/>
+<valeur/>
+</proprieteApplication>
+<proprieteApplication>
+<refPropriete id="62"/>
+<valeur/>
+</proprieteApplication>
+</proprietesApplication>
+</application>
 <application id="21">
 <nom>Source Application</nom>
 <desc/>
@@ -680,6 +730,29 @@
 <proprieteApplication>
 <refPropriete id="21"/>
 <valeur>true</valeur>
+</proprieteApplication>
+</proprietesApplication>
+</application>
+<application id="82">
+<nom>Packaging configuration</nom>
+<fkApplicationTemplate>-1</fkApplicationTemplate>
+<desc/>
+<proprietesApplication>
+<proprieteApplication>
+<refPropriete id="64"/>
+<valeur>C:\Temp\packageConf</valeur>
+</proprieteApplication>
+<proprieteApplication>
+<refPropriete id="61"/>
+<valeur>C:\Temp\</valeur>
+</proprieteApplication>
+<proprieteApplication>
+<refPropriete id="63"/>
+<valeur>C:\Temp\</valeur>
+</proprieteApplication>
+<proprieteApplication>
+<refPropriete id="62"/>
+<valeur>C:\enovacom\eai</valeur>
 </proprieteApplication>
 </proprietesApplication>
 </application>
@@ -1053,6 +1126,46 @@
 <propRessource>
 <nom>jdbc.url</nom>
 <valeur>jdbc:oracle:thin:@//localhost:1521/XE</valeur>
+</propRessource>
+<propRessource>
+<nom>user</nom>
+<valeur>eai</valeur>
+</propRessource>
+<propRessource>
+<nom>maxPoolSize</nom>
+<valeur>50</valeur>
+</propRessource>
+<propRessource>
+<nom>jdbc.driver</nom>
+<valeur>oracle.jdbc.driver.OracleDriver</valeur>
+</propRessource>
+</propsRessource>
+</ressource>
+<ressource id="943">
+<nom>EAI</nom>
+<description/>
+<soustype/>
+<actif>0</actif>
+<propsRessource>
+<propRessource>
+<nom>password</nom>
+<valeur>eai</valeur>
+</propRessource>
+<propRessource>
+<nom>minPoolSize</nom>
+<valeur>5</valeur>
+</propRessource>
+<propRessource>
+<nom>checkValidConnectionSql</nom>
+<valeur>select 1 from dual</valeur>
+</propRessource>
+<propRessource>
+<nom>maxIdleTime</nom>
+<valeur>30</valeur>
+</propRessource>
+<propRessource>
+<nom>jdbc.url</nom>
+<valeur>jdbc:oracle:thin:@localhost:1521:XE</valeur>
 </propRessource>
 <propRessource>
 <nom>user</nom>
@@ -5584,6 +5697,158 @@ Where ((T0."DONNEEAPP1" LIKE '15%'))&#13;
 </propRessource>
 </propsRessource>
 </ressource>
+<ressource id="944">
+<nom>Directory polling Package descriptor file</nom>
+<description>C:\Temp\packageConf</description>
+<soustype>Directory</soustype>
+<actif>0</actif>
+<propsRessource>
+<propRessource>
+<nom>fileFilter</nom>
+<valeur>*.xml</valeur>
+</propRessource>
+<propRessource>
+<nom>planif_minute</nom>
+<valeur>*</valeur>
+</propRessource>
+<propRessource>
+<nom>planif_dayOfWeek</nom>
+<valeur>1,2,3,4,5,6,7</valeur>
+</propRessource>
+<propRessource>
+<nom>watchDirectory</nom>
+<valeur>C:\Temp\packageConf</valeur>
+</propRessource>
+<propRessource>
+<nom>InputIdtypedoc</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>InputIddocument</nom>
+<valeur>$fileName;</valeur>
+</propRessource>
+<propRessource>
+<nom>typeScrutation</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>notifServiceStopped</nom>
+<valeur>14</valeur>
+</propRessource>
+<propRessource>
+<nom>InputDonneeapp1</nom>
+<valeur>$fileSize;</valeur>
+</propRessource>
+<propRessource>
+<nom>planif_month</nom>
+<valeur>1,2,3,4,5,6,7,8,9,10,11,12</valeur>
+</propRessource>
+<propRessource>
+<nom>watchInterval</nom>
+<valeur>60</valeur>
+</propRessource>
+<propRessource>
+<nom>InputDonneeapp3</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>InputDonneeapp2</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>planif_day</nom>
+<valeur>*</valeur>
+</propRessource>
+<propRessource>
+<nom>InputIdapplisrc</nom>
+<valeur>82</valeur>
+</propRessource>
+<propRessource>
+<nom>host</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>smbProtocol</nom>
+<valeur>smbv2v3</valeur>
+</propRessource>
+<propRessource>
+<nom>notifErrorDelete</nom>
+<valeur>20</valeur>
+</propRessource>
+<propRessource>
+<nom>planif_hour</nom>
+<valeur>*</valeur>
+</propRessource>
+<propRessource>
+<nom>InputDonneeapp5</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>InputDonneeapp4</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>InputDonneeapp6</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>listModeles</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>ordreImport</nom>
+<valeur>chrono</valeur>
+</propRessource>
+<propRessource>
+<nom>workflow</nom>
+<valeur>Package archive generation</valeur>
+</propRessource>
+<propRessource>
+<nom>conf3</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>periodeCreuseNotifInactivite</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>conf1</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>conf2b</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>conf2a</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>InputIdapplidst</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>periodePleineNotifInactivite</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>nomDeDomaine</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>planif_seconde</nom>
+<valeur>0</valeur>
+</propRessource>
+<propRessource>
+<nom>pwd</nom>
+<valeur/>
+</propRessource>
+<propRessource>
+<nom>user</nom>
+<valeur/>
+</propRessource>
+</propsRessource>
+</ressource>
 <ressource id="121">
 <nom>FTP get client test</nom>
 <description>The FTP client regularly scans a remote folder and starts the predifined scenario when a new file is detected.</description>
@@ -8237,7 +8502,7 @@ Where ((T0."DONNEEAPP1" LIKE '15%'))&#13;
 <nom>OH NK1 Segment Generation</nom>
 <description/>
 <soustype>Ascribe</soustype>
-<actif>0</actif>
+<actif>1</actif>
 <propsRessource/>
 </ressource>
 <ressource id="861">
@@ -8252,6 +8517,20 @@ Where ((T0."DONNEEAPP1" LIKE '15%'))&#13;
 <description/>
 <soustype>Ascribe</soustype>
 <actif>1</actif>
+<propsRessource/>
+</ressource>
+<ressource id="942">
+<nom>Package archive follow-up</nom>
+<description/>
+<soustype>Systeme</soustype>
+<actif>0</actif>
+<propsRessource/>
+</ressource>
+<ressource id="941">
+<nom>Package archive generation</nom>
+<description/>
+<soustype>Systeme</soustype>
+<actif>0</actif>
 <propsRessource/>
 </ressource>
 <ressource id="281">
@@ -11836,6 +12115,7 @@ Where ((T0."DONNEEAPP1" LIKE '15%'))&#13;
 <suivis>
 <suivi nom="CHIS SFTP get files"/>
 <suivi nom="Directory CHIS ReadFrom"/>
+<suivi nom="Directory polling Package descriptor file"/>
 </suivis>
 </onglet>
 <onglet nom="Maintenance">
@@ -11947,14 +12227,19 @@ Where ((T0."DONNEEAPP1" LIKE '15%'))&#13;
 <suivi nom="Database export Scheduler"/>
 </suivis>
 </onglet>
-<onglet nom="1 Graphnet">
+<onglet nom="1 Generics">
 <suivis>
-<suivi nom="Scheduler Graphnet SQLSRVR"/>
+<suivi nom="OH HL7 ADT Generation Scheduler"/>
 </suivis>
 </onglet>
 <onglet nom="2 CHIS">
 <suivis>
 <suivi nom="Scheduler CHIS SQLSRVR"/>
+</suivis>
+</onglet>
+<onglet nom="3 Graphnet">
+<suivis>
+<suivi nom="Scheduler Graphnet SQLSRVR"/>
 </suivis>
 </onglet>
 <onglet nom="Principal">
@@ -11990,7 +12275,6 @@ Where ((T0."DONNEEAPP1" LIKE '15%'))&#13;
 <suivi nom="CHIS SFTP get files"/>
 <suivi nom="Directory CHIS ReadFrom"/>
 <suivi nom="Directory analysis CHIS"/>
-<suivi nom="OH HL7 ADT Generation Scheduler"/>
 <suivi nom="OH Docman Generation Scheduler"/>
 </suivis>
 </onglet>
@@ -12049,6 +12333,17 @@ Where ((T0."DONNEEAPP1" LIKE '15%'))&#13;
 <suivi nom="HTTP server Dunhill"/>
 <suivi nom="HTTP Server Tatjana"/>
 <suivi nom="HTTP server Nik"/>
+<suivi nom="CHIS SFTP get files"/>
+<suivi nom="Directory CHIS ReadFrom"/>
+<suivi nom="MLLP server Carenotes"/>
+<suivi nom="Purge Scheduler"/>
+<suivi nom="Scheduler Graphnet SQLSRVR"/>
+<suivi nom="Scheduler REST Call Nik"/>
+<suivi nom="Scheduler CHIS SQLSRVR"/>
+<suivi nom="Directory analysis CHIS"/>
+<suivi nom="Configuration Export Scheduler"/>
+<suivi nom="Database export Scheduler"/>
+<suivi nom="OH Docman Generation Scheduler"/>
 </suivis>
 </onglet>
 <onglet nom="Rachel">
@@ -12057,6 +12352,20 @@ Where ((T0."DONNEEAPP1" LIKE '15%'))&#13;
 <suivi nom="Directory analysis Rachel CSV"/>
 <suivi nom="Scheduler Database Rachel"/>
 <suivi nom="HTTP server Rachel"/>
+</suivis>
+</onglet>
+<onglet nom="CHIS">
+<suivis/>
+</onglet>
+<onglet nom="Graphnet">
+<suivis/>
+</onglet>
+<onglet nom="Docman">
+<suivis/>
+</onglet>
+<onglet nom="Generics">
+<suivis>
+<suivi nom="OH HL7 ADT Generation Scheduler"/>
 </suivis>
 </onglet>
 </onglets>
@@ -12127,17 +12436,17 @@ Where ((T0."DONNEEAPP1" LIKE '15%'))&#13;
 <suivi nom="Directory Analysis Tatjana ADT HL7"/>
 </suivis>
 </onglet>
-<onglet nom="Graphnet">
+<onglet nom="1 Graphnet">
 <suivis>
 <suivi nom="Scheduler Graphnet SQLSRVR"/>
 </suivis>
 </onglet>
-<onglet nom="CHIS">
+<onglet nom="2 CHIS">
 <suivis>
 <suivi nom="Scheduler CHIS SQLSRVR"/>
 </suivis>
 </onglet>
-<onglet nom="OH ADT Generation">
+<onglet nom="3 Generics">
 <suivis>
 <suivi nom="OH HL7 ADT Generation Scheduler"/>
 </suivis>

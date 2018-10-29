@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package targetNamespace="Package archive follow-up" version="2.40.1.0" xmlns="http://www.bpmi.org/2002/BPML/process">
+<process id="f9db0d95" name="Package archive follow-up">
+<context/>
+<action comment="false" id="c76acc0b" name="Package archive follow-up" nomAffiche="Scenario Vide">
+<documentation/>
+<input formatter="Binaire" property="InputMessage"/>
+<output>
+<source property="InputMessage"/>
+</output>
+<attributes xmlns="">
+<extension name="activityName">eventAction</extension>
+<extension name="maxNumberOfThreads">1</extension>
+</attributes>
+</action>
+</process>
+</package>
