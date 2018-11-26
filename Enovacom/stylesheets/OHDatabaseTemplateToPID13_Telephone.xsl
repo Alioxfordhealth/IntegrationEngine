@@ -9,6 +9,8 @@
 		<PID.13.1><xsl:value-of select="//HomeTelephone/text()"/></PID.13.1>
 		<PID.13.2><xsl:value-of select="//PhoneType/text()"/></PID.13.2>
 		<PID.13.3><xsl:value-of select="//UseCode/text()"/></PID.13.3>
+		<PID.13.4 />
+		<PID.13.5 />
 	</phoneRoot>
 </xsl:template>
 

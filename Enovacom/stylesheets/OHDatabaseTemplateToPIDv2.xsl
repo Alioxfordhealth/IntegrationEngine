@@ -46,8 +46,6 @@
 			<PID.11.6/>
 			<PID.11.7><xsl:value-of select="//AddressType/text()"/></PID.11.7>
 			<PID.12.1/>
-			<PID.13.4><xsl:value-of select="//Email/text()"/></PID.13.4>
-			<PID.13.5/>
 			<PID.14.1/>
 			<PID.15.1><xsl:value-of select="//PrimaryLanguage/text()"/></PID.15.1>
 			<PID.16.1><xsl:value-of select="//MaritalStatus/text()"/></PID.16.1>
