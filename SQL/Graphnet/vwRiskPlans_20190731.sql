@@ -61,7 +61,7 @@ FROM [Graphnet].[vwInscopePatient]                                     AS scope
         ON scope.[PatientNo] = risk.Patient_ID
     LEFT OUTER JOIN InvalidRiskAssessments
         ON InvalidRiskAssessments.RiskAssessmentID = risk.OHFTGENRiskAssessmentv3_ID
-WHERE Confirm_Flag_ID = 1;
+WHERE Confirm_Flag_ID = 1
 
 GO
 
